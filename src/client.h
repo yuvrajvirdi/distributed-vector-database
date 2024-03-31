@@ -8,12 +8,14 @@ using boost::asio::ip::tcp;
 
 class Client {
 public:
-    Client(boost::asio::io_context& io_context, const std::string& host, const std::string& port);
+    Client(const std::string& host, const std::string& port);
+    ~Client();
 
     std::string send_command(const std::string& command);
 
 private:
+    boost::asio::io_context io_context;
     tcp::socket socket;
 };
 
-#endif // CLIENT_H
+#endif
